@@ -15,7 +15,7 @@ function App() {
     "관계",
     "자기관리",
     "마인드",
-    "루틴",
+    "경험",
   ];
   const [detail, setDetail] = useState(-1);
   const [confirm, setConfirm] = useState(false);

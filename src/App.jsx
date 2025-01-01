@@ -66,8 +66,16 @@ function App() {
   const handleDownload = async () => {
     if (!mandalartRef.current) return;
 
+    const scale = 10;
+
     DomToImage.toPng(mandalartRef.current, {
       filter: (node) => node !== buttonsRef.current,
+      width: mandalartRef.current.clientWidth * scale,
+      height: mandalartRef.current.clientHeight * scale,
+      style: {
+        transform: `scale(${scale})`,
+        transformOrigin: "center",
+      },
     })
       .then((blob) => {
         saveAs(blob, `mandalart.png`);

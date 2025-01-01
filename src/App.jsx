@@ -20,7 +20,8 @@ function App() {
   const [detail, setDetail] = useState(-1);
   const [confirm, setConfirm] = useState(false);
   const [detailInputs, setDetailInputs] = useState(
-    Array.from({ length: 8 }, () => [...Array.from({ length: 8 }, () => "")])
+    JSON.parse(localStorage.getItem("mandalart")) ||
+      Array.from({ length: 8 }, () => [...Array.from({ length: 8 }, () => "")])
   );
 
   const isMain = detail === -1;
@@ -38,13 +39,17 @@ function App() {
   };
 
   const handleDetailInputChange = (e, index) => {
-    setDetailInputs((details) => [
-      ...details.slice(0, detail),
-      details[detail].map((detailInput, i) =>
-        i === index ? e.target.value : detailInput
-      ),
-      ...details.slice(detail + 1),
-    ]);
+    setDetailInputs((details) => {
+      const result = [
+        ...details.slice(0, detail),
+        details[detail].map((detailInput, i) =>
+          i === index ? e.target.value : detailInput
+        ),
+        ...details.slice(detail + 1),
+      ];
+      localStorage.setItem("mandalart", JSON.stringify(result));
+      return result;
+    });
   };
 
   const handleGoBackClick = () => {

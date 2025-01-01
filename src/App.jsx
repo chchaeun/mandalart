@@ -66,7 +66,7 @@ function App() {
   const handleDownload = async () => {
     if (!mandalartRef.current) return;
 
-    const scale = 10;
+    const scale = 20;
 
     DomToImage.toPng(mandalartRef.current, {
       filter: (node) => node !== buttonsRef.current,
